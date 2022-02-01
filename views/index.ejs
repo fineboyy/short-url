@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+
+  <form action="/" method="POST">
+    <input type="text" name="fullUrl">
+    <input type="submit" value="Tinyfy!">
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Full Url</th>
+        <th>Shortened Url</th>
+        <th>Clicks</th>
+      </tr>
+    </thead>
+    <tr>
+      <td><a href="">https://wefoiwehffo.ewfwoeiw/ecae.caecoae</a></td>
+      <td><a href="">bit.ly/wweo32</a></td>
+      <td><a href="">0</a></td>
+    </tr>
+    <% if(true) { %>
+    <% shortUrls.forEach( url => { %>
+      <tr>
+        <td>
+          <%= url.fullUrl %>
+        </td>
+        <td>
+          <%= url.shortUrl %>
+        </td>
+        <td>
+          <%= url.clicks.length %>
+        </td>
+      </tr>
+    <% }) %>
+    <% } %>
+  </table>
+</body>
+
 </html>

@@ -1,7 +1,19 @@
 const mongoose = require("mongoose")
 const shortid = require("shortid")
 
-const UrlSchema = new mongoose.Schema({
+
+const ClickSchema = new mongoose.Schema({
+    time: {
+        type: Date,
+        default: Date.now()
+    },
+    location: {
+        type: String
+    }
+})
+
+
+const ShortUrlSchema = new mongoose.Schema({
     fullUrl: {
         type: String,
         required: true
@@ -16,11 +28,8 @@ const UrlSchema = new mongoose.Schema({
 })
 
 
-const ClickSchema = new mongoose.Schema({
-    time: {
-        type: Date
-    },
-    location: {
-        type: String
-    }
-})
+
+
+
+mongoose.model('ShortUrl', ShortUrlSchema)
+mongoose.model('Click', ClickSchema)
