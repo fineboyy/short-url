@@ -4,6 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const mongoose = require("mongoose")
+
+mongoose.connect('mongodb://localhost/shorturl', {
+  useNewUrlParser: true
+}).then(() => {
+  console.log("Successfully connected to database!");
+})
+.catch(err => {
+  console.log("========================")
+  console.log("Could not connect", err);
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
