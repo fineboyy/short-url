@@ -8,4 +8,6 @@ router.get('/', indexController.getHomePage )
 
 router.post('/', indexController.createNewUrl)
 
+router.get('/:short_url', indexController.redirectUrl)
+
 module.exports = router;

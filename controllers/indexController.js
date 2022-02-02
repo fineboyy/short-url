@@ -10,7 +10,7 @@ const ShortUrl = mongoose.model("ShortUrl")
 
 async function getHomePage (req, res, next) {
     const shortUrls = await ShortUrl.find()
-    res.render('index', { shortUrls: shortUrls, title: "TiniFy" });
+    return res.render('index', { shortUrls: shortUrls, title: "TiniFy" });
 }
 
 async function createNewUrl({ body, params }, res) {
@@ -21,13 +21,27 @@ async function createNewUrl({ body, params }, res) {
 
     url.save((err, newUrl) => {
         console.log(newUrl)
-        res.redirect("/")
+        return res.redirect("/")
+    })
+}
+
+
+function redirectUrl({params}, res) {
+    let url = params.short_url
+
+    ShortUrl.findOne({shortUrl: url}, (err, foundUrl) => {
+        if(err) return res.send(err)
+
+        let fullUrl = foundUrl.fullUrl
+        return res.redirect(fullUrl)
     })
 }
 
 
 
+
 module.exports = {
     getHomePage,
-    createNewUrl
+    createNewUrl,
+    redirectUrl
 }
